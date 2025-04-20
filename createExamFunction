@@ -1,0 +1,27 @@
+import json
+import boto3
+import uuid
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('ExamQuestions')
+
+def lambda_handler(event, context):
+    body = json.loads(event['body'])
+    exam_id = str(uuid.uuid4())
+    
+    for question in body['questions']:
+        question_id = str(uuid.uuid4())
+        item = {
+            'exam_id': exam_id,
+            'question_id': question_id,
+            'question_text': question['question_text'],
+            'options': question['options'],
+            'correct_answer': question['correct_answer'],
+            'difficulty_level': question.get('difficulty_level', 'medium')
+        }
+        table.put_item(Item=item)
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps({'message': 'Exam created', 'exam_id': exam_id})
+    }
