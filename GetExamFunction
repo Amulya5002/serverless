@@ -1,0 +1,17 @@
+import json
+import boto3
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('ExamQuestions')
+
+def lambda_handler(event, context):
+    exam_id = event['pathParameters']['exam_id']
+    
+    response = table.query(
+        KeyConditionExpression=boto3.dynamodb.conditions.Key('exam_id').eq(exam_id)
+    )
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps({'questions': response['Items']})
+    }
