@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>Exam Generator</title></head>
+<body>
+  <h2>Generate New Exam</h2>
+  <label>Number of Questions: <input type="number" id="numQuestions" /></label>
+  <label>Topic: <input type="text" id="topic" /></label>
+  <button onclick="generateExam()">Generate</button>
+
+  <script>
+    async function generateExam() {
+      const numQuestions = document.getElementById('numQuestions').value;
+      const topic = document.getElementById('topic').value;
+
+      const response = await fetch('YOUR_API_GATEWAY_URL/generate-exam', {
+        method: 'POST',
+        body: JSON.stringify({ numQuestions, topic }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      const data = await response.json();
+      alert('Exam generated with ID: ' + data.examId);
+    }
+  </script>
+</body>
+</html>

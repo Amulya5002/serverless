@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    background-image: url('exam.jpg'); /* Replace with your actual image path */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+
+  /* Optional: make input fields and buttons readable */
+  input, button {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+</style>
+
+  <title>Signup - Exam System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Create Your Account</h2>
+  <input type="text" id="newUsername" placeholder="Username" /><br><br>
+  <input type="email" id="newEmail" placeholder="Email" /><br><br>
+  <input type="password" id="newPassword" placeholder="Password" /><br><br>
+  <button onclick="signUp()">Sign Up</button>
+
+  <p>Already have an account? <a href="login1.html">Login here</a></p>
+
+  <script src="https://cdn.jsdelivr.net/npm/aws-amplify@5.0.4/dist/aws-amplify.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
